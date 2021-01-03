@@ -1,10 +1,15 @@
 
 public class FairDivision {
-    public static double eps = 0.000000000001;
-    public static int k = 10000;
-
     public static String answer = "";
+
     public static void main(String[] args) {
+        int k = Integer.parseInt(args[0]);
+        double eps = Double.parseDouble(args[1]);
+
+        startDivision(k, eps);
+    }
+
+    public static void startDivision(int k, double eps) {
 
         double valuesA[] = new double[k];
         double valuesB[] = new double[k];
@@ -117,9 +122,9 @@ public class FairDivision {
             while (numC == numMostValueA || numC == numMostValueB)
                 numC++;
             System.out.println("Все просто");
-            System.out.println("A выбирает " + numMostValueA + " часть");
-            System.out.println("B выбирает " + numMostValueB + " часть");
-            System.out.println("C выбирает " + numC + " часть");
+            System.out.println("A выбирает " + (numMostValueA + 1) + " часть");
+            System.out.println("B выбирает " + (numMostValueB + 1) + " часть");
+            System.out.println("C выбирает " + (numC + 1) + " часть");
             System.out.print("По критерию A: ");
             for (int i = 0; i < 3; i++) {
                 System.out.print(A[i] + " ");
@@ -204,9 +209,9 @@ public class FairDivision {
                     numC++;
                 }
 
-                answer += "A выбрал " + numMostValueA + " часть\n";
-                answer += "B выбрал " + numSecondValueB + " часть\n";
-                answer += "C выбрал " + numC + " часть\n";
+                answer += "A выбрал " + (numMostValueA + 1) + " часть\n";
+                answer += "B выбрал " + (numSecondValueB + 1) + " часть\n";
+                answer += "C выбрал " + (numC + 1) + " часть\n";
                 answer += "Ценности:\n";
                 answer += "A: ";
                 for (int i = 0; i < 3; i++) {
@@ -295,9 +300,9 @@ public class FairDivision {
                 if (numMostTrimA == numMostTrimC) {
                     while (numB == numMostTrimA || numB == numSecondTrimC)
                         numB++;
-                    answer += "A выбрал " + numMostTrimA + " часть\n";
-                    answer += "C выбрал " + numSecondTrimC + " часть\n";
-                    answer += "B выбрал " + numB + " часть\n";
+                    answer += "A выбрал " + (numMostTrimA + 1) + " часть\n";
+                    answer += "C выбрал " + (numSecondTrimC + 1) + " часть\n";
+                    answer += "B выбрал " + (numB + 1) + " часть\n";
                     answer += "Ценности остатка:\n";
                     answer += "A: ";
                     for (int i = 0; i < 3; i++) {
@@ -328,9 +333,9 @@ public class FairDivision {
                 else {
                     while (numB == numMostTrimA || numB == numMostTrimC)
                         numB++;
-                    answer += "A выбрал " + numMostTrimA + " часть\n";
-                    answer += "C выбрал " + numMostTrimC + " часть\n";
-                    answer += "B выбрал " + numB + " часть\n";
+                    answer += "A выбрал " + (numMostTrimA + 1) + " часть\n";
+                    answer += "C выбрал " + (numMostTrimC + 1) + " часть\n";
+                    answer += "B выбрал " + (numB + 1) + " часть\n";
                     answer += "Ценности остатка:\n";
                     answer += "A: ";
                     for (int i = 0; i < 3; i++) {
@@ -358,19 +363,19 @@ public class FairDivision {
                     answer = "";
                 }
             }
-            // A не выбирает отсеченный кусок, B обязан брать отсеченный кусок
+            // A не выбирает отсеченный кусок, С выбирает вторым
             else {
-                A[numMostValueA] = secondValueA;
-                numMostValueA = numSecondValueA;
-
                 int numC = 0;
-                while (numC == numMostValueA || numC == numMostValueB) {
+                while (numC == numMostValueA || numC == numSecondValueA) {
                     numC++;
                 }
 
-                answer += "A выбрал " + numMostValueA + " часть\n";
-                answer += "B выбрал " + numMostValueB + " часть\n";
-                answer += "C выбрал " + numC + " часть\n";
+                A[numMostValueA] = secondValueA;
+                numMostValueA = numSecondValueA;
+
+                answer += "A выбрал " + (numMostValueA + 1) + " часть\n";
+                answer += "C выбрал " + (numC + 1) + " часть\n";
+                answer += "B выбрал " + (numMostValueB + 1) + " часть\n";
                 answer += "Ценности:\n";
                 answer += "A: ";
                 for (int i = 0; i < 3; i++) {
@@ -459,9 +464,9 @@ public class FairDivision {
                 if (numMostTrimB == numMostTrimC) {
                     while (numA == numMostTrimB || numA == numSecondTrimC)
                         numA++;
-                    answer += "B выбрал " + numMostTrimB + " часть\n";
-                    answer += "C выбрал " + numSecondTrimC + " часть\n";
-                    answer += "A выбрал " + numA + " часть\n";
+                    answer += "B выбрал " + (numMostTrimB + 1) + " часть\n";
+                    answer += "C выбрал " + (numSecondTrimC + 1) + " часть\n";
+                    answer += "A выбрал " + (numA + 1) + " часть\n";
                     answer += "Ценности остатка:\n";
                     answer += "B: ";
                     for (int i = 0; i < 3; i++) {
@@ -482,9 +487,9 @@ public class FairDivision {
                     answer = "";
 
                     answer += "Суммарные ценности:\n";
-                    answer += "A: A - " + (A[numMostValueA] + trimA[numA]) + " B - " + (A[numMostValueB] + trimA[numMostTrimB]) + " C - " + (A[numC] + trimA[numSecondTrimC]) + "\n";
-                    answer += "B: A - " + (B[numMostValueA] + trimB[numA]) + " B - " + (B[numMostValueB] + trimB[numMostTrimB]) + " C - " + (B[numC] + trimB[numSecondTrimC]) + "\n";
-                    answer += "C: A - " + (C[numMostValueA] + trimC[numA]) + " B - " + (C[numMostValueB] + trimC[numMostTrimB]) + " C - " + (C[numC] + trimC[numSecondTrimC]) + "\n";
+                    answer += "По критерию A: A - " + (A[numMostValueA] + trimA[numA]) + " B - " + (A[numMostValueB] + trimA[numMostTrimB]) + " C - " + (A[numC] + trimA[numSecondTrimC]) + "\n";
+                    answer += "По критерию B: A - " + (B[numMostValueA] + trimB[numA]) + " B - " + (B[numMostValueB] + trimB[numMostTrimB]) + " C - " + (B[numC] + trimB[numSecondTrimC]) + "\n";
+                    answer += "По критерию C: A - " + (C[numMostValueA] + trimC[numA]) + " B - " + (C[numMostValueB] + trimC[numMostTrimB]) + " C - " + (C[numC] + trimC[numSecondTrimC]) + "\n";
                     System.out.println(answer);
                     answer = "";
                 }
@@ -492,9 +497,9 @@ public class FairDivision {
                 else {
                     while (numA == numMostTrimB || numA == numMostTrimC)
                         numA++;
-                    answer += "B выбрал " + numMostTrimB + " часть\n";
-                    answer += "C выбрал " + numMostTrimC + " часть\n";
-                    answer += "A выбрал " + numA + " часть\n";
+                    answer += "B выбрал " + (numMostTrimB + 1) + " часть\n";
+                    answer += "C выбрал " + (numMostTrimC + 1) + " часть\n";
+                    answer += "A выбрал " + (numA + 1) + " часть\n";
                     answer += "Ценности остатка:\n";
                     answer += "B: ";
                     for (int i = 0; i < 3; i++) {
@@ -515,9 +520,9 @@ public class FairDivision {
                     answer = "";
 
                     answer += "Суммарные ценности:\n";
-                    answer += "A: A - " + (A[numMostValueA] + trimA[numA]) + " B - " + (A[numMostValueB] + trimA[numMostTrimB]) + " C - " + (A[numC] + trimA[numMostTrimC]) + "\n";
-                    answer += "A: A - " + (B[numMostValueA] + trimB[numA]) + " B - " + (B[numMostValueB] + trimB[numMostTrimB]) + " C - " + (B[numC] + trimB[numMostTrimC]) + "\n";
-                    answer += "A: A - " + (C[numMostValueA] + trimC[numA]) + " B - " + (C[numMostValueB] + trimC[numMostTrimB]) + " C - " + (C[numC] + trimC[numMostTrimC]) + "\n";
+                    answer += "По критерию A: A - " + (A[numMostValueA] + trimA[numA]) + " B - " + (A[numMostValueB] + trimA[numMostTrimB]) + " C - " + (A[numC] + trimA[numMostTrimC]) + "\n";
+                    answer += "По критерию B: A - " + (B[numMostValueA] + trimB[numA]) + " B - " + (B[numMostValueB] + trimB[numMostTrimB]) + " C - " + (B[numC] + trimB[numMostTrimC]) + "\n";
+                    answer += "По критерию C: A - " + (C[numMostValueA] + trimC[numA]) + " B - " + (C[numMostValueB] + trimC[numMostTrimB]) + " C - " + (C[numC] + trimC[numMostTrimC]) + "\n";
                     System.out.println(answer);
                     answer = "";
                 }
