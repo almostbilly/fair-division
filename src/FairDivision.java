@@ -37,7 +37,7 @@ public class FairDivision {
             markC1++;
         }
 
-        double percentMarkC1 = ((((partC - (C[0] % partC)) / eps) * eps) / valuesC[markC1]);
+        double percentMarkC1 = (((int)((partC - (C[0] % partC)) / eps) * eps) / valuesC[markC1]);
         C[1] += (1 - percentMarkC1) * valuesC[markC1];
         C[0] += percentMarkC1 * valuesC[markC1];
 
@@ -49,7 +49,7 @@ public class FairDivision {
             C[1] += valuesC[markC2];
             markC2++;
         }
-        double percentMarkC2 = ((((partC - C[1]) / eps) * eps) / valuesC[markC2]);
+        double percentMarkC2 = (((int)((partC - (C[1] % partC)) / eps) * eps) / valuesC[markC2]);
         C[1] += percentMarkC2 * valuesC[markC2];
 
         C[2] = sumValuesC - C[0] - C[1];
@@ -179,7 +179,7 @@ public class FairDivision {
                 sumB += valuesB[markB1];
                 markB1++;
             }
-            double percentMarkB1 = ((((secondValueB - (sumB % secondValueB)) / eps) * eps) / valuesB[markB1]);
+            double percentMarkB1 = (((int)((secondValueB - (sumB % secondValueB)) / eps) * eps) / valuesB[markB1]);
 
             // определяем ценность остатка по критериям A и B
             double valueTrimA = 0, valueTrimB = 0, valueTrimC = 0;
@@ -240,7 +240,7 @@ public class FairDivision {
                     trimB[0] += valuesB[markTrimB1];
                     markTrimB1++;
                 }
-                double percentMarkTrimB1 = ((((partTrimB - (trimB[0] % partTrimB)) / eps) * eps) / valuesB[markTrimB1]);
+                double percentMarkTrimB1 = (((int)((partTrimB - (trimB[0] % partTrimB)) / eps) * eps) / valuesB[markTrimB1]);
                 trimB[1] += (1 - percentMarkTrimB1) * valuesB[markTrimB1];
                 trimB[0] += percentMarkTrimB1 * valuesB[markTrimB1];
 
@@ -252,7 +252,7 @@ public class FairDivision {
                     trimB[1] += valuesB[markTrimB2];
                     markTrimB2++;
                 }
-                double percentMarkTrimB2 = ((((partTrimB - (trimB[1] % partTrimB)) / eps) * eps) / valuesB[markTrimB2]);
+                double percentMarkTrimB2 = (((int)((partTrimB - (trimB[1] % partTrimB)) / eps) * eps) / valuesB[markTrimB2]);
                 trimB[1] += percentMarkTrimB2 * valuesB[markTrimB2];
 
                 trimB[2] = valueTrimB - trimB[0] - trimB[1];
@@ -404,7 +404,7 @@ public class FairDivision {
                     trimA[0] += valuesA[markTrimA1];
                     markTrimA1++;
                 }
-                double percentMarkTrimA1 = ((((partTrimA - (trimA[0] % partTrimA)) / eps) * eps) / valuesA[markTrimA1]);
+                double percentMarkTrimA1 = (((int)((partTrimA - (trimA[0] % partTrimA)) / eps) * eps) / valuesA[markTrimA1]);
                 trimA[1] += (1 - percentMarkTrimA1) * valuesA[markTrimA1];
                 trimA[0] += percentMarkTrimA1 * valuesA[markTrimA1];
 
@@ -416,7 +416,7 @@ public class FairDivision {
                     trimA[1] += valuesA[markTrimA2];
                     markTrimA2++;
                 }
-                double percentMarkTrimA2 = ((((partTrimA - (trimA[1] % partTrimA)) / eps) * eps) / valuesA[markTrimA2]);
+                double percentMarkTrimA2 = (((int)((partTrimA - (trimA[1] % partTrimA)) / eps) * eps) / valuesA[markTrimA2]);
                 trimA[1] += percentMarkTrimA2 * valuesA[markTrimA2];
 
                 trimA[2] = valueTrimA - trimA[0] - trimA[1];
